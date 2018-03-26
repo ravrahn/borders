@@ -1,5 +1,6 @@
 '''
-Scoring functiongs will go in this file.
+Scoring functiongs will go in this file. They probably will involve sparse 
+matrices
 '''
 
 
@@ -13,5 +14,11 @@ def area():
 def compare_matrix():
     ''' Compares 2 arrays of same size and returns sum/list of different
     elements.
+    '''
+    pass
+
+
+def perimiter():
+    ''' Calculates number of edge elements in matrix
     '''
     pass
