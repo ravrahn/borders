@@ -5,13 +5,14 @@ matrices
 
 import numpy as np
 from model import UserInput
+from scipy import ndimage
 
 
 def area(user_input):
     ''' Calculates the enclosed area of a border. This is going to have to count
     the number of enclosed points. Assumes that all borders are enclosed.
     '''
-    return np.sum(user_input) #returns number of true elements
+    return np.sum(user_input.get_data()) #returns number of true elements
 
 
 def compare_matrix(user_input, country):
@@ -25,10 +26,18 @@ def compare_matrix(user_input, country):
     pass
 
 
-def perimiter():
-    ''' Calculates number of edge elements in matrix
+def perimiter(user_input):
+    ''' Calculates number of edge elements in matrix assuming that all elements
+    are connected.
     '''
-    pass
+
+    data = user_input.get_data()
+
+    eroded_image = ndimage.binary_erosion(data).astype(data.dtype)
+    edge = np.logical_xor(data, eroded_image)
+    perimiter = np.sum(edge)
+
+    return perimiter
 
 
 def most_similar(user_input, map_list):
